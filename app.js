@@ -157,6 +157,9 @@ app.use((req, res, next) => {
 //app.use('/reviews', reviews);
 //app.use('/', UserRoute);
 
+app.get('/', (req, res) => {
+    res.render('main/index')
+});
 
 app.get('/index', (req, res) => {
     res.render('main/index')
