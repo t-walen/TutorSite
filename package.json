@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "18.13.0"
+  },
   "name": "tarastutoring",
   "version": "1.0.0",
   "description": "",
