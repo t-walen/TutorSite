@@ -1,0 +1,36 @@
+
+.footer {
+    background-color: #899499 !important;
+    width: 100% !important;
+    align-items: center;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.container-footer {
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.left {
+    color: white !important;
+    text-shadow: none !important;
+    font-size: 15px !important;
+    width: 33%;
+}
+
+.center {
+    color: white !important;
+    text-shadow: none !important;
+    font-size: 12px !important;
+}
+
+/* Clearfix for floated elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

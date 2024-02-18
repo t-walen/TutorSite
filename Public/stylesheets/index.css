@@ -1,4 +1,6 @@
-
+.cover-container{
+  width:100% !important;
+}
   ul {
     list-style: none;
     padding: 0;
@@ -29,5 +31,3 @@
     height: auto;
 
 }
-
-

@@ -1,8 +1,8 @@
 const { studentSchema } = require('../schemas.js');
 const ExpressError = require('../Utilities/expresserror');
-const Student = require('../Models/student')
-const { reviewSchema } = require('../schemas.js');
-const Review = require('../Models/review')
+const Student = require('../model/student')
+const { testimonialSchema } = require('../schemas.js');
+const Testimonial = require('../model/testimonials')
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -26,6 +26,35 @@ module.exports.ValidateStudent = (req, res, next) => {
     }
 }
 
+
+module.exports.isTestimonialAuthor = async (req, res, next) => {
+    module.exports.isTestimonialAuthor = async (req, res, next) => {
+        try {
+            const { id, testimonialId } = req.params;
+            const testimonial = await Testimonial.findById(testimonialId);
+
+            if (!testimonial || !testimonial.author) {
+                // Testimonial or its author is missing
+                req.flash('error', 'Testimonial not found or missing author');
+                return res.redirect('/testimonials');
+            }
+
+            if (!testimonial.author.equals(req.user._id)) {
+                // User is not the author of the testimonial
+                req.flash('error', 'You do not have permission');
+                return res.redirect('/testimonials');
+            }
+
+            next();
+        } catch (error) {
+            // Handle other errors
+            console.error('Error in isTestimonialAuthor middleware:', error);
+            req.flash('error', 'Internal Server Error');
+            res.redirect('/testimonials');
+        }
+    };
+}
+
 //module.exports.isAuthor = async (req, res, next) => {
    // const { id } = req.params;
    // const student = await Student.findById(id);
@@ -46,8 +75,8 @@ module.exports.ValidateStudent = (req, res, next) => {
   //  next();
 //}
 
-module.exports.validateReview = (req, res, next) => {
-    const {error} = reviewSchema.validate(req.body);
+module.exports.validateTestimonial = (req, res, next) => {
+    const {error} = testimonialSchema.validate(req.body);
     if(error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)

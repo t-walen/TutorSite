@@ -1,0 +1,19 @@
+
+
+* {
+    font-size: 15px !important;
+    margin: 0px;
+  }
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar {
+    background-color: #899499 !important;
+    text-shadow: none !important;
+}

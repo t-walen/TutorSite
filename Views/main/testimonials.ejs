@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate') %>
+<% if(currentUser) { %>
+<div class="row col-6 offset-3">
+    <!-- "Leave a Testimonial" section -->
+    <h1 class="text-center">Leave a Testimonial</h1>
+
+    <form action="/testimonials" method="POST" novalidate class="validated-form mb-5">
+        <div class="mb-3">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="5" id="rating" name="testimonial[rating]">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="body">Review</label>
+            <textarea class="form-control" name="testimonial[body]" id="body" cols="30" rows="3" required></textarea>
+            <div class="valid-feedback">
+                Looks Good!
+            </div>
+        </div>
+        <button class="btn btn-success">Submit</button>
+    </form>
+<div>
+    <% } %>
+
+<!--Testimonials carousel Section-->
+    <section>
+        <div class="row text-center">
+          <div class="col-md-25 mt-4">
+            <!-- Carousel wrapper -->
+            <div id="carouselTestimonial" class="carousel slide carousel-dark" data-bs-ride="carousel">
+              <!-- Inner -->
+              <div class="carousel-inner">
+                <% for(let i = 0; i < testimonials.length; i++) { %>
+                <!-- Single item -->
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                  <p class="lead font-italic mx-4 mx-md-5">
+                   "<%=testimonials[i].body%>"
+                  </p>
+                  <p class="text-muted mb-0"></p>
+                  <p>-<%= testimonials[i].author?.username ? testimonials[i].author.username : 'Anonymous' %></p>
+                  <% if (currentUser && testimonials[i].author && testimonials[i].author.equals(currentUser._id)) { %>
+                    <form action="/testimonials/<%=testimonials[i]._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+                <% } %>
+                </div>
+                <% if (testimonials.length > 1) { %>
+              <!-- Controls -->
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonial" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonial" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% if(!currentUser) { %>
+<div class="row text-center mt-5">
+    <p>Sign in to leave a testimonial!</p>
+</div>
+<%}%>
+</section>
+</div>

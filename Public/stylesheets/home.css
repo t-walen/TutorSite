@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/Images/engin-akyurt-KUeJcc4YUug-unsplash.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/Images/DNA.jpg");
 
     background-size: cover;
     background-position: center;
@@ -15,12 +15,14 @@ body {
 .btn-secondary, .btn-secondary:hover{
     color: #333;
     text-shadow: none;
+
 }
 
 h1 {
     color: white;
+    font-size: 25px !important;
 }
 
 .list {
-    color: white;
+    color: #00ABE4;
 }

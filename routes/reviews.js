@@ -14,4 +14,7 @@ const Review = require('../Models/review');
 
 //router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview));
 
-//module.exports = router;
+//
+
+
+module.exports = router;
